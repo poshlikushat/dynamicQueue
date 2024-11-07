@@ -6,6 +6,7 @@ void queueCreate (Queue *pqueue) {
 	pqueue->size = 0;
 	pqueue->head = 0;
 	pqueue->tail = 0;
+	pqueue->array = malloc(sizeof(Pointer) * pqueue->capacity);
 }
 
 // Destroy the queue, free memory
