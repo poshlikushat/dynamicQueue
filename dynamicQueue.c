@@ -10,7 +10,10 @@ void queueCreate (Queue *pqueue) {
 
 // Destroy the queue, free memory
 void queueDestroy (Queue *pqueue) {
-	free(pqueue->array);
+	if(pqueue->array != NULL) {
+		free(pqueue->array);
+	}
+	
 	pqueue->array = NULL;
 	pqueue->capacity = 0;
 	pqueue->size = 0;
@@ -20,20 +23,44 @@ void queueDestroy (Queue *pqueue) {
 
 // Put a value at the end of the queue
 void queueEnqueue(Queue *pqueue, Pointer value) {
+	if (pqueue->size == pqueue->capacity) {
+		size_t newCapacity = pqueue->capacity * 2;
+		Pointer newArray = realloc(pqueue->array, newCapacity * sizeof(Pointer));
 
+		if (newArray == NULL) {
+			abort();
+		}
+
+		pqueue->capacity = newCapacity;
+		pqueue->array = newArray;
+	}
+
+	pqueue->array[pqueue->tail] = value;
+
+	pqueue->tail = (pqueue->tail + 1) % pqueue->capacity;
+
+	pqueue->size++;
 }
 
-// Return number of elements in the queue
+// Return a number of elements in the queue
 size_t queueSize(Queue *pqueue) {
-
+	return pqueue->size;
 }
 
-//Delete and return a value of the first element, if it's empty return 0
+//Delete and return a value of the first element, if it's empty return NULL
 Pointer queueDequeue(Queue *pqueue) {
+	if (pqueue->size == 0)
+		return NULL;
 
+	Pointer headValue = pqueue->array[pqueue->head];
+
+	pqueue->head = (pqueue->head + 1) % pqueue->capacity;
+
+	pqueue->size--;
+	return headValue;
 }
 
-//Rutrn a vakue of the first element not deleting it, if it's empyty return 0
-Pointer queuePeak(Queue *pqueue) {
-
+//Rutrn a value of the first element not deleting it, if it's empyty return NULL
+Pointer queuePeek(Queue *pqueue) {
+	return (pqueue->size == 0) ? NULL : pqueue->array[pqueue->head];
 }
