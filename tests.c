@@ -113,7 +113,7 @@ void testQueueAfterDequeue()
 	queueDestroy(&q);
 }
 
-int main()
+int RunAlltests()
 {
 	testQueueCreate();
 	testQueueEnqueue();
@@ -129,3 +129,9 @@ int main()
 
 	return 0;
 }
+
+
+/*
+	Capacity должно быть фиксировано
+	и добавить функцию main
+*/
