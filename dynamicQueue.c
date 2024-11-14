@@ -2,7 +2,7 @@
 
 // Create an empty queue
 void queueCreate (Queue *pqueue) {
-	pqueue->capacity = 4;
+	pqueue->capacity = 1000;
 	pqueue->size = 0;
 	pqueue->head = 0;
 	pqueue->tail = 0;
@@ -26,7 +26,7 @@ void queueDestroy (Queue *pqueue) {
 void queueEnqueue(Queue *pqueue, Pointer value) {
 	if (pqueue->size == pqueue->capacity) {
 		size_t newCapacity = pqueue->capacity * 2;
-		Pointer newArray = realloc(pqueue->array, newCapacity * sizeof(Pointer));
+		Pointer *newArray = realloc(pqueue->array, newCapacity * sizeof(Pointer));
 
 		if (newArray == NULL) {
 			abort();
