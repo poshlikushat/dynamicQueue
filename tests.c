@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "dynamicQueue.h"
 
-void testQueueCreateAndSize()
+void testQueueCreate()
 {
 	Queue q;
 	queueCreate(&q);
@@ -45,16 +45,18 @@ void testQueuePeek()
 	queueEnqueue(&q, &a);
 	queueEnqueue(&q, &b);
 
-	assert(*(int *)queuePeek(&q) == 10); 
+	assert(*(int *)queuePeek(&q) == 10);
+	assert(*(int *)queuePeek(&q) == 10);
 	queueDequeue(&q);					 
 	assert(*(int *)queuePeek(&q) == 20); 
 	queueDestroy(&q);
 }
 
-void testQueueResize()
+void testQueueCapacity()
 {
 	Queue q;
 	queueCreate(&q);
+	q.capacity = 4;
 	int a = 10;
 	for (int i = 0; i < 1000; i++)
 	{
@@ -96,20 +98,6 @@ void testQueueEnqueueAndDequeue()
 	queueDestroy(&q);
 }
 
-void testQueueOverflow()
-{
-	Queue q;
-	queueCreate(&q);
-	int a = 10;
-
-	for (int i = 0; i < 100; i++)
-	{
-		queueEnqueue(&q, &a);
-	}
-
-	assert(queueSize(&q) == 100); 
-	queueDestroy(&q);
-}
 
 void testQueueAfterDequeue()
 {
@@ -127,7 +115,7 @@ void testQueueAfterDequeue()
 
 int main()
 {
-	testQueueCreateAndSize();
+	testQueueCreate();
 	testQueueEnqueue();
 	testQueueDequeue();
 	testQueuePeek();
@@ -135,7 +123,6 @@ int main()
 	testQueueEmptyDequeue();
 	testQueueEmptyPeek();
 	testQueueEnqueueAndDequeue();
-	testQueueOverflow();
 	testQueueAfterDequeue();
 
 	printf("All tests passed!\n");
