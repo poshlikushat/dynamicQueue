@@ -1,8 +1,9 @@
 #include <assert.h>
 #include <stdio.h>
 #include "dynamicQueue.h"
+#include "tests.h"
 
-void testQueueCreate()
+static void testQueueCreate()
 {
 	Queue q;
 	queueCreate(&q);
@@ -10,7 +11,7 @@ void testQueueCreate()
 	queueDestroy(&q);
 }
 
-void testQueueEnqueue()
+static void testQueueEnqueue()
 {
 	Queue q;
 	queueCreate(&q);
@@ -22,7 +23,7 @@ void testQueueEnqueue()
 	queueDestroy(&q);
 }
 
-void testQueueDequeue()
+static void testQueueDequeue()
 {
 	Queue q;
 	queueCreate(&q);
@@ -37,7 +38,7 @@ void testQueueDequeue()
 	queueDestroy(&q);
 }
 
-void testQueuePeek()
+static void testQueuePeek()
 {
 	Queue q;
 	queueCreate(&q);
@@ -52,7 +53,7 @@ void testQueuePeek()
 	queueDestroy(&q);
 }
 
-void testQueueCapacity()
+static void testQueueCapacity()
 {
 	Queue q;
 	queueCreate(&q);
@@ -66,7 +67,7 @@ void testQueueCapacity()
 	queueDestroy(&q);
 }
 
-void testQueueEmptyDequeue()
+static void testQueueEmptyDequeue()
 {
 	Queue q;
 	queueCreate(&q);
@@ -74,7 +75,7 @@ void testQueueEmptyDequeue()
 	queueDestroy(&q);
 }
 
-void testQueueEmptyPeek()
+static void testQueueEmptyPeek()
 {
 	Queue q;
 	queueCreate(&q);
@@ -82,7 +83,7 @@ void testQueueEmptyPeek()
 	queueDestroy(&q);
 }
 
-void testQueueEnqueueAndDequeue()
+static void testQueueEnqueueAndDequeue()
 {
 	Queue q;
 	queueCreate(&q);
@@ -99,7 +100,7 @@ void testQueueEnqueueAndDequeue()
 }
 
 
-void testQueueAfterDequeue()
+static void testQueueAfterDequeue()
 {
 	Queue q;
 	queueCreate(&q);
