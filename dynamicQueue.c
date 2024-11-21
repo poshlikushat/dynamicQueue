@@ -27,7 +27,7 @@ void queueDestroy (Queue *pqueue) {
 // Put a value at the end of the queue
 void queueEnqueue(Queue *pqueue, Pointer value) {
 	if (pqueue->size > pqueue->capacity) {
-		return CAPACITYERROR;
+		abort();
 	}
 
 	pqueue->array[pqueue->tail] = value;

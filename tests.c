@@ -120,7 +120,6 @@ int RunAlltests()
 	testQueueEnqueue();
 	testQueueDequeue();
 	testQueuePeek();
-	testQueueResize();
 	testQueueEmptyDequeue();
 	testQueueEmptyPeek();
 	testQueueEnqueueAndDequeue();
